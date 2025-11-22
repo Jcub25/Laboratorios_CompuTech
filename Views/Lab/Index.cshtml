@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CampusTech.Models.Lab>
+
+@{
+    ViewData["Title"] = "Reservas de Laboratorio";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (TempData["Mensaje"] is string msg)
+{
+    <div class="alert alert-success" role="alert">
+        @msg
+    </div>
+}
+
+<p>
+    <a class="btn btn-primary" asp-controller="Lab" asp-action="Create">+ Nueva Reserva</a>
+</p>
+
+@if (!Model.Any())
+{
+    <p>No hay reservas registradas aún.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Profesor</th>
+                <th>Correo</th>
+                <th>Laboratorio</th>
+                <th>Fecha</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Motivo</th>
+                <th>Código</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model)
+            {
+                <tr>
+                    <td>@r.NombreProfesor</td>
+                    <td>@r.CorreoInstitucional</td>
+                    <td>@r.Laboratorio</td>
+                    <td>@r.FechaReserva.ToShortDateString()</td>
+                    <td>@r.HoraInicio.ToString(@"hh\:mm")</td>
+                    <td>@r.HoraFin.ToString(@"hh\:mm")</td>
+                    <td>@r.Motivo</td>
+                    <td>@r.CodigoReserva</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
