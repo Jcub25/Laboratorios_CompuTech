@@ -1,0 +1,68 @@
+﻿@model CampusTech.Models.Lab
+
+@{
+    ViewData["Title"] = "Registrar Reserva de Laboratorio";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="NombreProfesor" class="form-label"></label>
+        <input asp-for="NombreProfesor" class="form-control" />
+        <span asp-validation-for="NombreProfesor" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CorreoInstitucional" class="form-label"></label>
+        <input asp-for="CorreoInstitucional" class="form-control" />
+        <span asp-validation-for="CorreoInstitucional" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Laboratorio" class="form-label"></label>
+        <select asp-for="Laboratorio" class="form-select" asp-items="ViewBag.Labs">
+            <option value="">-- Seleccione --</option>
+        </select>
+        <span asp-validation-for="Laboratorio" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaReserva" class="form-label"></label>
+        <input asp-for="FechaReserva" class="form-control" type="date" />
+        <span asp-validation-for="FechaReserva" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="HoraInicio" class="form-label"></label>
+        <input asp-for="HoraInicio" class="form-control" type="time" />
+        <span asp-validation-for="HoraInicio" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="HoraFin" class="form-label"></label>
+        <input asp-for="HoraFin" class="form-control" type="time" />
+        <span asp-validation-for="HoraFin" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Motivo" class="form-label"></label>
+        <textarea asp-for="Motivo" class="form-control"></textarea>
+        <span asp-validation-for="Motivo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CodigoReserva" class="form-label"></label>
+        <input asp-for="CodigoReserva" class="form-control" placeholder="Ej: RES-001" />
+        <span asp-validation-for="CodigoReserva" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Registrar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
